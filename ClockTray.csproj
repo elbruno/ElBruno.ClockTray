@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <ApplicationIcon>clock.ico</ApplicationIcon>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- NuGet tool packaging -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>clocktray</ToolCommandName>
+    <PackageId>ElBruno.ClockTray</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Bruno Capuano</Authors>
+    <Description>Windows system tray app to toggle taskbar date/time visibility. Context menu + Ctrl+Alt+T hotkey.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/elbruno/ElBruno.ClockTray</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/elbruno/ElBruno.ClockTray</RepositoryUrl>
+    <PackageTags>windows;taskbar;clock;system-tray;toggle</PackageTags>
+    <PackageIcon>clock.ico</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="clock.ico" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>

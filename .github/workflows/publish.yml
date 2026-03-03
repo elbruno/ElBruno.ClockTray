@@ -1,0 +1,65 @@
+name: Publish to NuGet
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version (e.g. 0.1.0)'
+        required: false
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    environment: release
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Determine version
+        id: version
+        shell: pwsh
+        run: |
+          $version = ""
+          if ("${{ github.event_name }}" -eq "release") {
+            $version = "${{ github.event.release.tag_name }}".TrimStart("v")
+          }
+          if (-not $version -and "${{ github.event.inputs.version }}") {
+            $version = "${{ github.event.inputs.version }}"
+          }
+          if (-not $version) {
+            $xml = [xml](Get-Content ClockTray.csproj)
+            $version = $xml.Project.PropertyGroup.Version
+          }
+          echo "VERSION=$version" >> $env:GITHUB_OUTPUT
+          echo "Resolved version: $version"
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build ClockTray.csproj -c Release --no-restore -p:Version=${{ steps.version.outputs.VERSION }}
+
+      - name: Pack
+        run: dotnet pack ClockTray.csproj -c Release --no-build -o artifacts -p:Version=${{ steps.version.outputs.VERSION }}
+
+      - name: NuGet login (OIDC trusted publishing)
+        uses: NuGet/login@v1
+
+      - name: Push to NuGet
+        run: dotnet nuget push artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg
+          path: artifacts/*.nupkg
