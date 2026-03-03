@@ -6,6 +6,8 @@
 
 A lightweight Windows system tray application that lets you show or hide the taskbar date/time with a single click or keyboard shortcut.
 
+![ClockTray Demo](images/ClockTray-Demo.gif)
+
 ## Features
 
 - **System tray icon** with right-click context menu
