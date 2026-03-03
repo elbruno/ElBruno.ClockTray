@@ -1,0 +1,6 @@
+[
+  {"persistent_name": "Dutch", "universe": "predator", "role": "Lead", "created_at": "2026-03-03T15:46:31Z", "legacy_named": false, "status": "active"},
+  {"persistent_name": "Mac", "universe": "predator", "role": "Backend Dev", "created_at": "2026-03-03T15:46:31Z", "legacy_named": false, "status": "active"},
+  {"persistent_name": "Blain", "universe": "predator", "role": "UI Dev", "created_at": "2026-03-03T15:46:31Z", "legacy_named": false, "status": "active"},
+  {"persistent_name": "Dillon", "universe": "predator", "role": "Tester", "created_at": "2026-03-03T15:46:31Z", "legacy_named": false, "status": "active"}
+]
