@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace ClockTray;
@@ -17,6 +18,8 @@ public class ClockTrayApplicationContext : ApplicationContext
         var contextMenu = new ContextMenuStrip();
         contextMenu.Items.Add(_showItem);
         contextMenu.Items.Add(_hideItem);
+        contextMenu.Items.Add(new ToolStripSeparator());
+        contextMenu.Items.Add("About ClockTray...", null, OnAbout);
         contextMenu.Items.Add(new ToolStripSeparator());
         contextMenu.Items.Add("Exit", null, OnExit);
 
@@ -80,6 +83,15 @@ public class ClockTrayApplicationContext : ApplicationContext
         bool current = ClockToggler.IsClockVisible();
         ClockToggler.SetClockVisibility(!current);
         UpdateMenuState();
+    }
+
+    private void OnAbout(object? sender, EventArgs e)
+    {
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "https://github.com/elbruno/ElBruno.ClockTray",
+            UseShellExecute = true
+        });
     }
 
     private void OnExit(object? sender, EventArgs e)

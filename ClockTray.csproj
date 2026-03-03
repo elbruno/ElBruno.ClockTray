@@ -19,13 +19,14 @@
     <PackageProjectUrl>https://github.com/elbruno/ElBruno.ClockTray</PackageProjectUrl>
     <RepositoryUrl>https://github.com/elbruno/ElBruno.ClockTray</RepositoryUrl>
     <PackageTags>windows;taskbar;clock;system-tray;toggle</PackageTags>
-    <PackageIcon>clock.ico</PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="README.md" Pack="true" PackagePath="" />
     <None Include="clock.ico" Pack="true" PackagePath="" />
+    <None Include="images\logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
