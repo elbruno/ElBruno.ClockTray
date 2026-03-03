@@ -1,7 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net10.0-windows</TargetFramework>
     <ApplicationIcon>clock.ico</ApplicationIcon>
     <Nullable>enable</Nullable>
@@ -11,7 +13,7 @@
     <!-- NuGet packaging -->
     <IsPackable>true</IsPackable>
     <PackageId>ElBruno.ClockTray</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.5.5</Version>
     <Authors>Bruno Capuano</Authors>
     <Description>Windows system tray app to toggle taskbar date/time visibility. Context menu + Ctrl+Alt+T hotkey.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -20,6 +22,10 @@
     <PackageTags>windows;taskbar;clock;system-tray;toggle</PackageTags>
     <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!-- Dotnet tool configuration -->
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>clocktray</ToolCommandName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,5 +33,18 @@
     <None Include="clock.ico" Pack="true" PackagePath="" />
     <None Include="images\logo.png" Pack="true" PackagePath="" />
   </ItemGroup>
+
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+
+  <!-- Override SDK validation that blocks PackAsTool + UseWindowsForms -->
+  <!-- This must come AFTER Sdk.targets to override the SDK's _PackToolValidation -->
+  <Target Name="_PackToolValidation" Condition=" '$(PackAsTool)' == 'true' ">
+    <!-- Set tool TFM to simple net10.0 instead of net10.0-windows -->
+    <PropertyGroup>
+      <_ToolPackShortTargetFrameworkName>net10.0</_ToolPackShortTargetFrameworkName>
+      <_ToolPackShortTargetFrameworkName Condition="'$(SelfContained)' == 'true'">any</_ToolPackShortTargetFrameworkName>
+    </PropertyGroup>
+    <!-- Validation errors removed to allow PackAsTool + UseWindowsForms -->
+  </Target>
 
 </Project>

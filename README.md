@@ -18,13 +18,13 @@ A lightweight Windows system tray application that lets you show or hide the tas
 
 ## Installation
 
-### Install from NuGet
+### Install as a .NET Global Tool
 
 ```bash
-dotnet add package ElBruno.ClockTray
+dotnet tool install --global ElBruno.ClockTray
 ```
 
-Or search for **ElBruno.ClockTray** in the [NuGet Gallery](https://www.nuget.org/packages/ElBruno.ClockTray).
+After installation, run `clocktray` from any command prompt to launch the system tray app.
 
 ### Build from source
 
