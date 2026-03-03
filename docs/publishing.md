@@ -64,7 +64,7 @@ GitHub Actions workflow
 | `403 Forbidden` on push | Trusted publisher not configured | Add trusted publisher on nuget.org |
 | `409 Conflict` | Package version already exists | `--skip-duplicate` handles this; bump version |
 | OIDC token failure | Environment mismatch | Ensure workflow uses `environment: release` |
-| Build failure | Missing SDK | Ensure `dotnet-version: 8.0.x` in workflow |
+| Build failure | Missing SDK | Ensure `dotnet-version: 10.0.x` in workflow |
 
 ## References
 
