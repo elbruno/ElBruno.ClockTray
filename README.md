@@ -6,7 +6,7 @@
 
 A lightweight Windows system tray application that lets you show or hide the taskbar date/time with a single click or keyboard shortcut.
 
-![ClockTray Demo](images/ClockTray-Demo.gif)
+![ClockTray Demo](https://raw.githubusercontent.com/elbruno/ElBruno.ClockTray/main/images/ClockTray-Demo.gif)
 
 ## Features
 
@@ -17,6 +17,14 @@ A lightweight Windows system tray application that lets you show or hide the tas
 - **Older Windows**: Falls back to policy registry key + Explorer restart
 
 ## Installation
+
+### Install from NuGet
+
+```bash
+dotnet add package ElBruno.ClockTray
+```
+
+Or search for **ElBruno.ClockTray** in the [NuGet Gallery](https://www.nuget.org/packages/ElBruno.ClockTray).
 
 ### Build from source
 
