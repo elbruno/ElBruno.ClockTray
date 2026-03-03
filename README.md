@@ -18,13 +18,6 @@ A lightweight Windows system tray application that lets you show or hide the tas
 
 ## Installation
 
-### As a .NET tool (recommended)
-
-```bash
-dotnet tool install --global ElBruno.ClockTray
-clocktray
-```
-
 ### Build from source
 
 ```bash

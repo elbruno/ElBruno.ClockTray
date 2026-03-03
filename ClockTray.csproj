@@ -8,9 +8,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
 
-    <!-- NuGet tool packaging -->
-    <PackAsTool>true</PackAsTool>
-    <ToolCommandName>clocktray</ToolCommandName>
+    <!-- NuGet packaging -->
+    <IsPackable>true</IsPackable>
     <PackageId>ElBruno.ClockTray</PackageId>
     <Version>0.1.0</Version>
     <Authors>Bruno Capuano</Authors>
