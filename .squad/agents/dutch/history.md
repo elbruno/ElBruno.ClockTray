@@ -57,11 +57,24 @@
 - **Blain (UI Designer):** Completed WinUI 3 settings panel design (XAML structure, mockups, behavior specs) + extracted 9 reusable WinUI 3 patterns into skill document (652 lines)
 - **Molly (Technical Writer):** Completed documentation framework (overview, guide outline, PowerToys context) + extracted 7 reusable documentation patterns into skill document (417 lines)
 
+## Session: 2026-03-10 (Pre-Submission Review)
+**Work:** Authored technical accuracy checklist + risk brief for Molly's PowerToys submission  
+**Outcome:** ✅ doc/powertoys-submission-review.md complete  
+**Key Content:**
+- **Section 1:** Technical Claims Checklist (PowertoyModuleIface exports, registry paths, OS build boundaries, LOC estimates, dependency constraints)
+- **Section 2:** Risk Brief for Bruno (counters to "too simple" objection, C++ rewrite realism, maintenance burden, likely PowerToys team questions)
+- **Section 3:** Recommended discussion points (5 GitHub comments + 5 key Q&A prep items)
+- **Appendix:** Pre-submission checklist for Molly
+
+**Artifacts Created:**
+- `doc/powertoys-submission-review.md` (ready for Bruno + Molly review)
+
 **Next Steps for Squad:**
 1. ✅ Spec complete. Ready for Bruno approval + PowerToys community discussion.
 2. ✅ Blain's UI design complete (unblocks Mac for backend implementation)
 3. ✅ Molly's documentation framework complete (unblocks full prose writing after outline approval)
-4. 🎯 Sprint 1 Week 2: Team review of all artifacts; Dutch opens GitHub Discussion on PowerToys repo
-5. 🎯 Sprint 2: Mac + Dillon begin C++ core implementation
-6. 🎯 Sprint 3: Blain implements XAML settings panel (based on production-ready design)
-7. 🎯 Week 5: Dutch prepares PR submission to PowerToys/main
+4. ✅ Pre-submission review complete. Ready for Molly to draft GitHub issue.
+5. 🎯 Sprint 1 Week 2: Team review of all artifacts; Molly posts GitHub issue comment thread
+6. 🎯 Sprint 2: Mac + Dillon begin C++ core implementation
+7. 🎯 Sprint 3: Blain implements XAML settings panel (based on production-ready design)
+8. 🎯 Week 5: Dutch prepares PR submission to PowerToys/main

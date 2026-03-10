@@ -129,3 +129,40 @@
 - Dutch opens GitHub Discussion on PowerToys repo (tech spec)
 - Molly writes tech spec review document (clarity, completeness, accuracy)
 - Sprint 2: Mac + Dillon begin C++ core implementation
+
+### Session 3: 2026-03-10 — PowerToys Submission Drafts
+**Coordinator:** Molly (Technical Writer)  
+**Event:** Authored submission materials for PowerToys contribution process
+
+**What happened:**
+- Read all project documentation (tech spec, overview, context, decisions)
+- Drafted two submission materials:
+  1. **Short comment for issue #28769** (3-5 sentences) introducing ClockTray, stating contribution intent, and linking to full feature request
+  2. **Full GitHub feature request issue** with:
+     - Suggested title: "ClockTray: Global Hotkey to Toggle Taskbar Clock Visibility"
+     - Problem statement (taskbar clock friction)
+     - Proposed solution (hotkey + tray icon)
+     - Why it fits PowerToys (philosophy alignment, precedents)
+     - Technical approach (C++ architecture, WinUI 3 settings)
+     - OS compatibility (Win10 20H2+, Win11 all)
+     - Working prototype link (C# proof-of-concept)
+     - Tech spec reference (doc/ClockTray-TechSpec.md)
+     - Call to action (seeking feedback before C++ implementation)
+
+**Key Outputs:**
+- `doc/powertoys-submission-draft.md` — Both submission pieces in Markdown, ready for copy-paste to GitHub
+
+**Process Notes:**
+- Submission follows PowerToys community voice: enthusiastic but technical
+- Issue body kept to ~500 words (punchy, not a wall of text)
+- Emphasized working prototype to validate approach before C++ rewrite
+- Structured around PowerToys philosophy ("remove friction," "empower control," "lightweight")
+- Included architecture diagram (table) and file structure for clarity
+- Call-to-action focused on feedback fit + next steps (not premature code submission)
+
+**Next:**
+- Bruno reviews drafts and approves wording
+- Issue submitted to microsoft/PowerToys by designated team member
+- Comment posted to #28769 thread
+- Await PowerToys team feedback on concept
+- Begin C++ implementation (Sprint 2) once feedback confirms alignment

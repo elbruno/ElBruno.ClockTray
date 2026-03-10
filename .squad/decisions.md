@@ -570,3 +570,137 @@ Rewrite core toggle logic as C++ DLL:
 **Key Insight:** PowerToys wants validation BEFORE code (tech spec can prevent wasted effort)
 
 **Impact:** Early engagement with PowerToys team prevents rework
+
+---
+
+### 29. PowerToys Submission Strategy (Molly)
+**Date:** 2026-03-10  
+**Agent:** Molly (Technical Writer)  
+**Status:** DECISION MADE
+
+PowerToys contribution process requires contributors to follow a specific sequence before code is written. The process validates ideas early and prevents wasted effort on concepts that don't align with PowerToys philosophy.
+
+**Decision:** PowerToys submission = File issue first + comment on #28769, BEFORE any C++ code
+
+**Sequence:**
+1. **Comment on Issue #28769** (Standing "Would you like to contribute?" thread)
+   - Short intro (3–5 sentences)
+   - State intent to submit ClockTray
+   - Link to full feature request issue
+   - Mention working C# prototype validates approach
+
+2. **File GitHub Feature Request Issue** (Main proposal to microsoft/PowerToys)
+   - Title: "ClockTray: Global Hotkey to Toggle Taskbar Clock Visibility"
+   - Sections: Problem → Solution → Why Fits → Technical Approach → OS Compatibility → Prototype → Call to Action
+   - Length: ~500 words (punchy, not a wall of text)
+   - Links: Reference tech spec (`doc/ClockTray-TechSpec.md`), prototype repo (`feature/powertoys-contribution`)
+   - Tone: Professional, collaborative, enthusiastic but technical (match PowerToys community voice)
+
+3. **Await Feedback** (1–2 weeks)
+   - PowerToys team assesses fit and architecture
+   - May ask clarifying questions or suggest modifications
+   - Ideally approves concept before C++ implementation begins
+
+4. **Begin C++ Implementation** (Sprint 2, after feedback)
+   - Only after PowerToys team confirms alignment
+   - Reduces risk of rework or rejection
+   - Ensures architectural decisions match expectations
+
+**Rationale:**
+- **Prevents duplicated effort:** PowerToys team may reject or suggest significant changes before you write 1000+ lines of C++ code
+- **Validates philosophy fit:** Early feedback confirms ClockTray aligns with PowerToys' "remove friction" + "lightweight" philosophy
+- **Clarifies constraints:** PowerToys may have architectural requirements, WinUI 3 version constraints, or breaking changes the team should know about upfront
+- **Respects team's time:** A well-written issue + prototype demo signals maturity and commitment, making review more efficient
+
+**Artifacts:**
+- Location: `doc/powertoys-submission-draft.md`
+- Contents:
+  - Section 1: Comment for issue #28769
+  - Section 2: Full GitHub feature request issue (suggested title + issue body)
+
+Both in Markdown, ready for copy-paste once approved.
+
+**Related Decisions:**
+- **Tech Stack Analysis & MVP Recommendation** — Two-phase approach (Phase 1: C# MVP ✅, Phase 2: C++ rewrite 🎬)
+- **MVP Implementation** — C# prototype delivered on `feature/powertoys-contribution`
+- **PowerToys Contribution Path** (from PowerToys-Context.md) — Confirms sequence: Tech Spec → Design → Documentation → Code
+
+---
+
+### 30. Packaging ClockTray as a .NET Global Tool (Mac)
+**Date:** 2026-03-03  
+**Agent:** Mac  
+**Status:** Implemented ✅
+
+Bruno requested ClockTray be installable as a dotnet global tool so users can run `dotnet tool install --global ElBruno.ClockTray` and then launch it with `clocktray` from any terminal.
+
+**Problem:**
+The .NET SDK throws **NETSDK1146** error when `PackAsTool=true` is combined with `UseWindowsForms=true`:
+
+```
+error NETSDK1146: PackAsTool does not support TargetPlatformIdentifier being set. 
+For example, TargetFramework cannot be net5.0-windows, only net5.0. 
+PackAsTool also does not support UseWPF or UseWindowsForms when targeting .NET 5 and higher.
+```
+
+This is a hard error thrown from `Microsoft.NET.PackTool.targets` line 294 in the `_PackToolValidation` target. The SDK explicitly blocks packaging WinForms/WPF apps as tools.
+
+**Solution:**
+Override the SDK validation using explicit SDK imports and target redefinition:
+
+1. **Change from implicit to explicit SDK imports** in `.csproj`:
+   ```xml
+   <Project>
+     <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+     <!-- properties and items here -->
+     <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+     <!-- override targets AFTER SDK targets -->
+   </Project>
+   ```
+
+2. **Override `_PackToolValidation` target** after SDK imports:
+   ```xml
+   <Target Name="_PackToolValidation" Condition=" '$(PackAsTool)' == 'true' ">
+     <PropertyGroup>
+       <_ToolPackShortTargetFrameworkName>net10.0</_ToolPackShortTargetFrameworkName>
+       <_ToolPackShortTargetFrameworkName Condition="'$(SelfContained)' == 'true'">any</_ToolPackShortTargetFrameworkName>
+     </PropertyGroup>
+     <!-- Validation errors removed to allow PackAsTool + UseWindowsForms -->
+   </Target>
+   ```
+
+3. **Change OutputType** from `WinExe` to `Exe` (required for dotnet tools):
+   ```xml
+   <OutputType>Exe</OutputType>
+   ```
+
+4. **Set tool properties**:
+   ```xml
+   <PackAsTool>true</PackAsTool>
+   <ToolCommandName>clocktray</ToolCommandName>
+   ```
+
+**Key Technical Details:**
+- **Why explicit imports work**: The SDK imports happen implicitly at the start/end of `<Project Sdk="...">`. By using explicit `<Import>`, we control the order and can define targets AFTER the SDK's targets, allowing our override to win.
+- **Why set `_ToolPackShortTargetFrameworkName` directly**: The SDK calculates this via `GetNuGetShortFolderName` task which returns `net10.0-windows7.0` for `net10.0-windows` TFM. Tools require a simple TFM folder structure (`tools/net10.0/any/`) not a platform-specific one. Setting it to `net10.0` directly ensures correct package layout.
+- **Console window**: Changing from `WinExe` to `Exe` means a console window briefly appears on startup. This is a trade-off for tool packaging. Could be suppressed with additional Win32 calls if needed.
+
+**Verification:**
+- ✅ `dotnet pack -c Release` succeeds
+- ✅ Package created: `ElBruno.ClockTray.0.5.5.nupkg`
+- ✅ Tool installs: `dotnet tool install --global ElBruno.ClockTray`
+- ✅ Tool runs: `clocktray` command launches the system tray app
+- ✅ Build still works: `dotnet build` succeeds
+
+**Files Modified:**
+- `ClockTray.csproj` — explicit SDK imports, PackAsTool config, target override, version 0.5.5
+- `README.md` — installation instructions updated to use `dotnet tool install`
+
+**Future Considerations:**
+- Monitor .NET SDK changes — the validation might be relaxed in future versions
+- Consider hiding console window with `FreeConsole()` P/Invoke if the brief flash is problematic
+- Alternative: create a separate console wrapper project that references the WinForms app, but this approach is simpler
+
+**References:**
+- SDK source: `Microsoft.NET.PackTool.targets` (line 273-294 in .NET SDK 10.0.200)
+- Related issue: https://github.com/dotnet/sdk/issues/10346
