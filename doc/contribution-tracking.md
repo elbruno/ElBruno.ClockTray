@@ -20,12 +20,15 @@ Track the status of the ClockTray PowerToys contribution process.
 | Resource | URL | Status |
 |----------|-----|--------|
 | **PowerToys repo** | https://github.com/microsoft/PowerToys | — |
-| **"Would you like to contribute?" thread** | https://github.com/microsoft/PowerToys/issues/28769 | ⏳ Post comment |
-| **Feature request issue** | _(to be filed)_ | ⏳ File issue |
+| **Step 1 — Official contributor thread** ⚠️ | https://github.com/microsoft/PowerToys/issues/28769 | ⏳ Post comment |
+| **Step 2 — New feature request issue** ⚠️ | _(not yet filed — Bruno must create this)_ | ⏳ File issue |
 | **PowerToys PR** | _(to be opened after approval)_ | 🔒 Pending team approval |
 
-> **Next action:** Post the comment on #28769 and file the feature request issue using the drafts in `doc/powertoys-submission-draft.md`.
-> Once filed, update this file with the issue URL.
+> ⚠️ **Important:** Issue #28769 is **NOT** the ClockTray feature request. It is the standing PowerToys contributor intent thread (open since 2019, hundreds of comments) — post a brief comment there first to announce intent.
+>
+> The **actual ClockTray feature request issue** has not been created yet. Bruno must log into GitHub and file a new issue at https://github.com/microsoft/PowerToys/issues/new using the text in `doc/powertoys-submission-draft.md` → Section 2.
+>
+> Once filed, replace `_(not yet filed...)_` above with the new issue URL.
 
 ---
 
