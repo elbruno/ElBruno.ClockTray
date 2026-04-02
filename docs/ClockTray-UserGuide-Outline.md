@@ -235,7 +235,7 @@ A: See [Support & Feedback](#support--feedback) section.
   - Example: "Custom per-monitor clock toggling" or "Clock visibility schedule"
 
 - **Contributing to ClockTray**
-  - Development guide: [see devdocs/clocktray-dev.md](../../doc/devdocs/clocktray-dev.md)
+  - Development guide: [see devdocs/clocktray-dev.md](../../docs/devdocs/clocktray-dev.md)
   - Pull requests welcome (follow PowerToys contribution guidelines)
 
 ---

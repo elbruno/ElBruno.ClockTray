@@ -9,9 +9,9 @@ Track the status of the ClockTray PowerToys contribution process.
 | Resource | URL |
 |----------|-----|
 | **Feature branch** | https://github.com/elbruno/ElBruno.ClockTray/tree/feature/powertoys-contribution |
-| **Tech Spec** | https://github.com/elbruno/ElBruno.ClockTray/blob/feature/powertoys-contribution/doc/ClockTray-TechSpec.md |
-| **Submission Draft** | https://github.com/elbruno/ElBruno.ClockTray/blob/feature/powertoys-contribution/doc/powertoys-submission-draft.md |
-| **Technical Review** | https://github.com/elbruno/ElBruno.ClockTray/blob/feature/powertoys-contribution/doc/powertoys-submission-review.md |
+| **Tech Spec** | https://github.com/elbruno/ElBruno.ClockTray/blob/feature/powertoys-contribution/docs/ClockTray-TechSpec.md |
+| **Submission Draft** | https://github.com/elbruno/ElBruno.ClockTray/blob/feature/powertoys-contribution/docs/powertoys-submission-draft.md |
+| **Technical Review** | https://github.com/elbruno/ElBruno.ClockTray/blob/feature/powertoys-contribution/docs/powertoys-submission-review.md |
 
 ---
 
@@ -26,7 +26,7 @@ Track the status of the ClockTray PowerToys contribution process.
 
 > ⚠️ **Important:** Issue #28769 is **NOT** the ClockTray feature request. It is the standing PowerToys contributor intent thread (open since 2019, hundreds of comments) — post a brief comment there first to announce intent.
 >
-> The **actual ClockTray feature request issue** has not been created yet. Bruno must log into GitHub and file a new issue at https://github.com/microsoft/PowerToys/issues/new using the text in `doc/powertoys-submission-draft.md` → Section 2.
+> The **actual ClockTray feature request issue** has not been created yet. Bruno must log into GitHub and file a new issue at https://github.com/microsoft/PowerToys/issues/new using the text in `docs/powertoys-submission-draft.md` → Section 2.
 >
 > Once filed, replace `_(not yet filed...)_` above with the new issue URL.
 
