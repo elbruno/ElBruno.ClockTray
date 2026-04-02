@@ -11,8 +11,9 @@
 | Name | Role | Specialization | Emoji |
 |------|------|----------------|-------|
 | Dutch | Lead | Architecture, decisions, code review | 🏗️ |
-| Mac | Backend Dev | Win32/WPF, system tray, registry/COM interop | 🔧 |
-| Blain | UI Dev | WPF/WinUI, context menus, tray icon UX | ⚛️ |
-| Dillon | Tester | Tests, edge cases, OS version compat | 🧪 |
+| Mac | Backend Dev | Win32/C++, system tray, registry/COM interop | 🔧 |
+| Blain | UI Dev | WPF/WinUI 3, context menus, tray icon UX, settings panels | ⚛️ |
+| Dillon | Tester | Tests, edge cases, OS version compat, E2E validation | 🧪 |
+| Molly | Technical Writer | User docs, dev guides, contribution narratives | 📝 |
 | Scribe | Scribe | Memory, decisions, session logs | 📋 |
 | Ralph | Work Monitor | Work queue, backlog, keep-alive | 🔄 |

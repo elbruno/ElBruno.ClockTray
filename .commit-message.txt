@@ -1,0 +1,7 @@
+docs: powertoys submission drafts and technical review
+
+- doc/powertoys-submission-draft.md: GitHub issue body + #28769 comment (Molly)
+- doc/powertoys-submission-review.md: tech checklist + risk brief (Dutch)
+- Ready for Bruno to post to microsoft/PowerToys
+
+Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
