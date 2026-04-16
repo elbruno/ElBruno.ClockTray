@@ -13,7 +13,7 @@
     <!-- NuGet packaging -->
     <IsPackable>true</IsPackable>
     <PackageId>ElBruno.ClockTray</PackageId>
-    <Version>0.5.5</Version>
+    <Version>0.6.0</Version>
     <Authors>Bruno Capuano</Authors>
     <Description>Windows system tray app to toggle taskbar date/time visibility. Context menu + Ctrl+Alt+T hotkey.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -32,6 +32,11 @@
     <None Include="README.md" Pack="true" PackagePath="" />
     <None Include="clock.ico" Pack="true" PackagePath="" />
     <None Include="images\logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClockTray.Tests\**" />
+    <None Remove="ClockTray.Tests\**" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

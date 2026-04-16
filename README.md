@@ -15,6 +15,12 @@ A lightweight Windows system tray application that lets you show or hide the tas
 - **Global hotkey**: `Ctrl+Alt+T` to toggle
 - **Windows 11 23H2+**: Instant toggle via `WM_SETTINGCHANGE` (no Explorer restart)
 - **Older Windows**: Falls back to policy registry key + Explorer restart
+- **Chinese Lunar Calendar Overlay**: Optional floating overlay showing lunar calendar info
+- **Sexagenary Cycle (干支)**: Heavenly Stems and Earthly Branches year display
+- **Chinese Zodiac (生肖)**: Current zodiac animal
+- **Lunar Date Display**: Traditional Chinese month and day names
+- **24 Solar Terms (节气)**: Shows current or upcoming solar term
+- **CJK Font Support**: Auto-detects best available Chinese font
 
 ## Installation
 
@@ -41,6 +47,19 @@ dotnet run
 dotnet publish -c Release -r win-x64 --self-contained
 ```
 
+## Chinese Calendar Overlay
+
+ClockTray includes an optional floating overlay that displays Chinese lunar calendar information, inspired by the classic KClock tool. Toggle it from the system tray right-click menu → **Show Chinese Calendar**.
+
+The overlay shows:
+- Current time and Gregorian date
+- Sexagenary cycle year (干支) with zodiac animal (生肖)
+- Lunar month and day in traditional Chinese numerals
+- Chinese day of the week
+- Current or upcoming solar term (节气)
+
+For detailed information about the calendar calculations, see [Chinese Calendar Documentation](docs/chinese-calendar.md).
+
 ## Requirements
 
 - Windows 10 or 11
@@ -61,6 +80,9 @@ dotnet publish -c Release -r win-x64 --self-contained
 | `ClockTrayApplicationContext.cs` | NotifyIcon, context menu, app lifecycle |
 | `ClockToggler.cs` | Registry read/write + `SendMessageTimeout` P/Invoke |
 | `HotkeyWindow.cs` | Global hotkey via `RegisterHotKey` P/Invoke |
+| `ChineseCalendarHelper.cs` | Lunar calendar conversions (stems, branches, zodiac, month/day names) |
+| `SolarTermCalculator.cs` | 24 solar terms astronomical calculation |
+| `LunarClockOverlay.cs` | Floating always-on-top calendar overlay window |
 
 ## Contributing
 
