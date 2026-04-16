@@ -8,16 +8,24 @@ public class ClockTrayApplicationContext : ApplicationContext
     private readonly NotifyIcon _notifyIcon;
     private readonly ToolStripMenuItem _showItem;
     private readonly ToolStripMenuItem _hideItem;
+    private readonly ToolStripMenuItem _lunarItem;
     private readonly HotkeyWindow _hotkeyWindow;
+    private LunarClockOverlay? _lunarOverlay;
+
+    private const string ShowLunarText = "Show Chinese Calendar";
+    private const string HideLunarText = "Hide Chinese Calendar";
 
     public ClockTrayApplicationContext()
     {
-        _showItem = new ToolStripMenuItem("Show Date/Time", null, OnShow);
-        _hideItem = new ToolStripMenuItem("Hide Date/Time", null, OnHide);
+        _showItem  = new ToolStripMenuItem("Show Date/Time", null, OnShow);
+        _hideItem  = new ToolStripMenuItem("Hide Date/Time", null, OnHide);
+        _lunarItem = new ToolStripMenuItem(ShowLunarText, null, OnToggleLunar);
 
         var contextMenu = new ContextMenuStrip();
         contextMenu.Items.Add(_showItem);
         contextMenu.Items.Add(_hideItem);
+        contextMenu.Items.Add(new ToolStripSeparator());
+        contextMenu.Items.Add(_lunarItem);
         contextMenu.Items.Add(new ToolStripSeparator());
         contextMenu.Items.Add("About ClockTray...", null, OnAbout);
         contextMenu.Items.Add(new ToolStripSeparator());
@@ -85,6 +93,39 @@ public class ClockTrayApplicationContext : ApplicationContext
         UpdateMenuState();
     }
 
+    private void OnToggleLunar(object? sender, EventArgs e)
+    {
+        if (_lunarOverlay == null || _lunarOverlay.IsDisposed)
+        {
+            _lunarOverlay = new LunarClockOverlay();
+            _lunarOverlay.OverlayClosed += OnOverlayClosed;
+            _lunarOverlay.Show();
+            _lunarItem.Text = HideLunarText;
+        }
+        else
+        {
+            CloseLunarOverlay();
+        }
+    }
+
+    private void OnOverlayClosed(object? sender, EventArgs e)
+    {
+        _lunarOverlay = null;
+        _lunarItem.Text = ShowLunarText;
+    }
+
+    private void CloseLunarOverlay()
+    {
+        if (_lunarOverlay != null && !_lunarOverlay.IsDisposed)
+        {
+            _lunarOverlay.OverlayClosed -= OnOverlayClosed;
+            _lunarOverlay.Close();
+            _lunarOverlay.Dispose();
+        }
+        _lunarOverlay = null;
+        _lunarItem.Text = ShowLunarText;
+    }
+
     private void OnAbout(object? sender, EventArgs e)
     {
         Process.Start(new ProcessStartInfo
@@ -96,6 +137,7 @@ public class ClockTrayApplicationContext : ApplicationContext
 
     private void OnExit(object? sender, EventArgs e)
     {
+        CloseLunarOverlay();
         _hotkeyWindow.Dispose();
         _notifyIcon.Visible = false;
         _notifyIcon.Dispose();
@@ -106,6 +148,7 @@ public class ClockTrayApplicationContext : ApplicationContext
     {
         if (disposing)
         {
+            CloseLunarOverlay();
             _hotkeyWindow.Dispose();
             _notifyIcon.Visible = false;
             _notifyIcon.Dispose();
