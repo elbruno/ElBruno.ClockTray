@@ -8,17 +8,21 @@ public class ClockTrayApplicationContext : ApplicationContext
     private readonly NotifyIcon _notifyIcon;
     private readonly ToolStripMenuItem _showItem;
     private readonly ToolStripMenuItem _hideItem;
+    private readonly ToolStripMenuItem _lunarItem;
     private readonly HotkeyWindow _hotkeyWindow;
+    private LunarClockOverlay? _lunarOverlay;
 
     public ClockTrayApplicationContext()
     {
         _showItem = new ToolStripMenuItem("Show Date/Time", null, OnShow);
         _hideItem = new ToolStripMenuItem("Hide Date/Time", null, OnHide);
+        _lunarItem = new ToolStripMenuItem("Show Chinese Calendar", null, OnToggleLunar);
 
         var contextMenu = new ContextMenuStrip();
         contextMenu.Items.Add(_showItem);
         contextMenu.Items.Add(_hideItem);
         contextMenu.Items.Add(new ToolStripSeparator());
+        contextMenu.Items.Add(_lunarItem);
         contextMenu.Items.Add("About ClockTray...", null, OnAbout);
         contextMenu.Items.Add(new ToolStripSeparator());
         contextMenu.Items.Add("Exit", null, OnExit);
@@ -94,8 +98,42 @@ public class ClockTrayApplicationContext : ApplicationContext
         });
     }
 
+    private void OnToggleLunar(object? sender, EventArgs e)
+    {
+        if (_lunarOverlay != null)
+        {
+            CloseLunarOverlay();
+        }
+        else
+        {
+            _lunarOverlay = new LunarClockOverlay();
+            _lunarOverlay.OverlayClosed += OnOverlayClosed;
+            _lunarOverlay.Show();
+            _lunarItem.Text = "Hide Chinese Calendar";
+        }
+    }
+
+    private void OnOverlayClosed(object? sender, EventArgs e)
+    {
+        _lunarOverlay = null;
+        _lunarItem.Text = "Show Chinese Calendar";
+    }
+
+    private void CloseLunarOverlay()
+    {
+        if (_lunarOverlay != null)
+        {
+            _lunarOverlay.OverlayClosed -= OnOverlayClosed;
+            _lunarOverlay.Close();
+            _lunarOverlay.Dispose();
+            _lunarOverlay = null;
+            _lunarItem.Text = "Show Chinese Calendar";
+        }
+    }
+
     private void OnExit(object? sender, EventArgs e)
     {
+        CloseLunarOverlay();
         _hotkeyWindow.Dispose();
         _notifyIcon.Visible = false;
         _notifyIcon.Dispose();
@@ -106,6 +144,7 @@ public class ClockTrayApplicationContext : ApplicationContext
     {
         if (disposing)
         {
+            CloseLunarOverlay();
             _hotkeyWindow.Dispose();
             _notifyIcon.Visible = false;
             _notifyIcon.Dispose();
