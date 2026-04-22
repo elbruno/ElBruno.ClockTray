@@ -217,3 +217,30 @@
 - Bruno reviews docs for accuracy and tone
 - Review ClockTray CLI implementation to verify outputs match documentation
 - Consider adding examples for advanced automation (Task Scheduler, CI/CD integration)
+
+### Session 5: 2026-03-XX — v1.0.0 Blog Post
+**Coordinator:** Molly (Technical Writer)  
+**Event:** Authored English blog post for ClockTray v1.0.0 launch
+
+**What happened:**
+- Created polished, engaging blog post promoting ClockTray v1.0.0
+- Focus: New CLI feature as headline capability
+- Authored at `docs/blog/clocktray-v1-cli.md` (735 words)
+- Post structure: Hook → Feature announcement → CLI commands → Dual-mode explanation → Automation use cases → Lunar calendar bonus → Installation → Call to action
+- Included image placeholder (`clocktray-cli.png`)
+- Included AI image generation prompt for header artwork (terminal + taskbar aesthetic)
+
+**Key Outputs:**
+- `docs/blog/clocktray-v1-cli.md` — Full blog post (professional, developer-friendly tone)
+- AI image prompt for graphic designer/AI tool
+
+**Learnings:**
+- Blog post tone: Active voice, second person ("you"), approachable but professional
+- Structure for announcement posts: Problem → Solution → How to Use → Real-world Value → Call to Action
+- Developer audience responds to concrete examples (code blocks for CLI commands)
+- Automation use cases drive adoption (streaming, CI/CD, PowerShell workflows)
+
+**Next:**
+- Generate or commission header image per AI prompt
+- Bruno reviews blog post for accuracy and tone
+- Publish to GitHub Pages/blog platform
