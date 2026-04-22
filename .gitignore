@@ -28,6 +28,9 @@ bld/
 *.rsuser
 *.DotSettings.user
 
+## Language Server cache
+*.lscache
+
 ## OS
 Thumbs.db
 desktop.ini
