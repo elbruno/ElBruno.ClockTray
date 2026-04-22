@@ -1,5 +1,7 @@
 # 🕐 ClockTray: El Control de Tu Reloj en Windows que Necesitabas (¡Aunque No Lo Sabías!)
 
+![ClockTray Blog Header](clocktray-blog-claude.png)
+
 ## 🎯 ¿Por Qué Tu Reloj de Windows Es Tu Peor Enemigo en Directo?
 
 Levanta la mano si te ha pasado esto: Estás en medio de una presentación importante, streaming en vivo, o grabando un tutorial, y de repente tu pantalla muestra toda la información privada del reloj y la fecha del sistema. ¿Quién quiere que tus colegas, audiencia o cualquier persona viendo tu pantalla sepa exactamente qué hora es en tu zona horaria o qué día es hoy?

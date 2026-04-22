@@ -1,5 +1,7 @@
 # ClockTray: el reloj del taskbar bajo tu control (y un calendario lunar chino espectacular)
 
+![ClockTray Blog Header](clocktray-blog-codex.png)
+
 ¿Alguna vez te ha pasado que estás en plena presentación, demo o grabación de pantalla y el reloj del taskbar de Windows roba la atención? Ese pequeño detalle puede distraer a tu audiencia, revelar información sensible (hora, zona, fecha) o simplemente romper la estética de tu escritorio. **ClockTray** llega para resolverlo con elegancia, rapidez y un toque cultural único.
 
 ClockTray es una **aplicación de bandeja del sistema de Windows** distribuida como **.NET Global Tool**. Con un clic o un atajo de teclado, puedes mostrar u ocultar la fecha y hora del taskbar de Windows en segundos. Y no solo eso: incluye un **overlay de calendario lunar chino** con detalles fascinantes como el **Ciclo Sexagenario (干支)**, el **Zodiaco Chino (生肖)** y los **Términos Solares (节气)**. Todo esto, en una herramienta ligera, rápida y lista para Windows 11 23H2+ con toggle instantáneo.
