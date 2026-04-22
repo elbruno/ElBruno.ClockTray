@@ -2,7 +2,7 @@ namespace ClockTray;
 
 static class Program
 {
-    private const string Version = "0.6.0";
+    private const string Version = "1.0.0";
 
     static int Main(string[] args)
     {

@@ -38,7 +38,7 @@ La belleza de una Global Tool de .NET es que la instalación es absurdamente sen
 dotnet tool install --global ElBruno.ClockTray
 ```
 
-Sí, eso es todo. Una única línea, y ClockTray estará listo para revolucionar tu experiencia en Windows. 
+Sí, eso es todo. Una única línea, y ClockTray **v1.0.0** estará listo para revolucionar tu experiencia en Windows — tanto desde el system tray como desde la terminal.
 
 ### Requisitos Previos:
 - **.NET SDK** instalado en tu máquina (versión compatible con Global Tools)
@@ -62,6 +62,49 @@ Haz clic en el icono de ClockTray en tu system tray (esquina inferior derecha) p
 
 ### El Resultado:
 Tu taskbar está más limpio, más profesional, y *totalmente bajo tu control*. ¡Eso es lo que llamamos una victoria! 🏆
+
+---
+
+## 💻 ¡NUEVO en v1.0! Modo CLI: ClockTray desde la Terminal
+
+¿Eres de los que vive en la terminal? ¡ClockTray 1.0 te tiene cubierto! 🎉
+
+La gran novedad de esta versión es el **modo CLI completo**, que te permite controlar el reloj del taskbar directamente desde PowerShell, CMD o cualquier terminal, sin necesidad de abrir la interfaz gráfica. Perfecto para automatización, scripts y flujos de trabajo avanzados.
+
+### ⚡ Comandos CLI Disponibles
+
+```bash
+clocktray show      # 👁️  Muestra el reloj del taskbar
+clocktray hide      # 🙈  Oculta el reloj del taskbar
+clocktray status    # 📊  Muestra si el reloj está visible u oculto
+clocktray --help    # 📖  Muestra la ayuda completa
+clocktray --version # 🏷️  Muestra la versión instalada (v1.0.0)
+```
+
+### 🔄 Modo Dual: GUI + CLI en Una Sola Herramienta
+
+ClockTray funciona de forma inteligente según cómo lo invoques:
+
+- **Sin argumentos** → Lanza la aplicación gráfica en la bandeja del sistema (como siempre).
+- **Con un comando** → Ejecuta la acción en modo headless y sale inmediatamente. ¡Sin ventanas, sin tray, solo el resultado!
+
+### 🤖 Casos de Uso para Power Users
+
+```powershell
+# 🎬 Script de preparación para streaming
+clocktray hide       # Oculta el reloj antes de empezar
+Start-Process obs    # Abre OBS
+
+# 📸 Script de limpieza post-grabación
+clocktray show       # Restaura el reloj al terminar
+```
+
+También puedes integrar ClockTray en:
+- **Atajos de teclado del sistema** con `clocktray show/hide`
+- **Perfiles de AutoHotkey o PowerToys** para automatización avanzada
+- **Scripts de inicio/cierre** de sesiones de trabajo
+
+¡Con v1.0.0, ClockTray pasa de ser una app de tray a una verdadera herramienta de productividad para desarrolladores! 🚀
 
 ---
 

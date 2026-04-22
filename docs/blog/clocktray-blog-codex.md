@@ -28,7 +28,7 @@ ClockTray se distribuye como .NET Global Tool, así que la instalación es direc
 dotnet tool install --global ElBruno.ClockTray
 ```
 
-Una vez instalado, tendrás la herramienta disponible globalmente. Esto significa que puedes ejecutarla desde cualquier terminal y empezar a usarla de inmediato.
+Una vez instalado (**v1.0.0**), tendrás la herramienta disponible globalmente con soporte completo de GUI y CLI. Puedes ejecutarla desde cualquier terminal y empezar a usarla de inmediato.
 
 ## Cómo usar ClockTray
 El uso es tan simple como su instalación. Al ejecutarla, ClockTray se ubica en la bandeja del sistema. Desde allí podrás:
@@ -49,6 +49,46 @@ El overlay incluye:
 - **Términos Solares (节气)**: los 24 periodos que marcan los cambios estacionales según la tradición china.
 
 Esta funcionalidad convierte a ClockTray en una herramienta que va más allá de lo funcional: es también una ventana cultural y educativa.
+
+## Nuevo en v1.0: modo CLI para automatización y scripts
+
+ClockTray 1.0 introduce un **modo de línea de comandos (CLI)** que permite controlar el reloj del taskbar directamente desde la terminal, sin abrir ninguna interfaz gráfica. Ideal para automatización, scripts de PowerShell, flujos de trabajo de productividad o integración en pipelines de CI/CD.
+
+### Comandos disponibles
+
+```bash
+# Mostrar el reloj del taskbar
+clocktray show
+
+# Ocultar el reloj del taskbar
+clocktray hide
+
+# Consultar el estado actual del reloj
+clocktray status
+
+# Ver la ayuda
+clocktray --help
+
+# Ver la versión instalada
+clocktray --version
+```
+
+La herramienta funciona en **modo dual**: si se ejecuta sin argumentos, lanza la aplicación de bandeja gráfica como siempre. Si se pasa cualquier comando, opera en modo headless y sale automáticamente con un código de retorno estándar (0 = éxito, 1 = error).
+
+### Casos de uso del CLI
+
+- **Scripts de PowerShell**: automatiza ocultación del reloj antes de grabar y recuperación al terminar.
+- **Atajos de teclado del sistema**: configura teclas de acceso rápido que llamen a `clocktray show/hide` directamente.
+- **Flujos de streaming**: integra en OBS o herramientas de captura mediante comandos de shell.
+- **Perfiles de escritorio**: guarda y restaura el estado del reloj en diferentes configuraciones.
+
+```powershell
+# Ejemplo: script de preparación para grabar
+clocktray hide
+Start-Process obs
+# ... cuando termines de grabar ...
+clocktray show
+```
 
 ## Compatibilidad y rendimiento
 ClockTray está optimizado para **Windows 11 23H2+**, ofreciendo un toggle instantáneo del reloj del taskbar sin retrasos ni comportamientos extraños. Al ser una aplicación de bandeja ligera, no consume recursos excesivos ni afecta el rendimiento general del sistema.
