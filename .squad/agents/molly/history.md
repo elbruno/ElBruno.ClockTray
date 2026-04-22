@@ -166,3 +166,54 @@
 - Comment posted to #28769 thread
 - Await PowerToys team feedback on concept
 - Begin C++ implementation (Sprint 2) once feedback confirms alignment
+
+### Session 4: 2026-03-XX — CLI Reference Documentation
+**Coordinator:** Molly (Technical Writer)  
+**Event:** Created comprehensive CLI reference documentation for new command-line interface
+
+**What happened:**
+- Analyzed current README.md style and tone
+- Reviewed project history and decisions for context
+- Created new `docs/cli-reference.md` with:
+  - Full command reference (show, hide, status, --help)
+  - Installation + update/uninstall instructions
+  - Usage examples with expected output (bash, batch, PowerShell)
+  - Exit codes table and behavior matrix
+  - Real-world use cases (presentations, streaming, automation, accessibility)
+  - Troubleshooting section covering common issues
+  - Technical details (registry paths, hotkey info, platform differences)
+- Updated README.md:
+  - Added "CLI Commands" to Features list
+  - Added new "## CLI Commands" section with quick start examples
+  - Linked to detailed CLI Reference Guide
+
+**Key Outputs:**
+- `docs/cli-reference.md` (410+ lines)
+- Updated `README.md` with CLI section and link
+
+**Learnings & Patterns:**
+
+1. **Three-layer CLI doc approach:** Overview (Features) → Quick Start (README) → Deep Reference (cli-reference.md)
+   - Features layer: Brief mention with feature callout (one line)
+   - Quick Start layer: 4–6 line code examples in README + link to guide
+   - Deep Reference layer: Full command tables, exit codes, examples, troubleshooting
+
+2. **Platform-aware documentation:**
+   - Windows 11 23H2+ behavior differs materially (instant toggle vs. Explorer restart)
+   - Document both paths explicitly; users need to understand why behavior differs
+   - Troubleshooting addresses both modern and legacy scenarios
+
+3. **Automation-first examples:**
+   - CLI reference emphasizes scripting use cases (presentations, monitoring, accessibility)
+   - Batch + PowerShell examples increase adoption for Windows developers
+   - Exit codes positioned as first-class documentation (not buried)
+
+4. **Command reference structure:**
+   - Signature + purpose → Usage → Output → Exit Codes → Behavior
+   - Order matters: show what the command does before explaining when to use it
+   - Real output examples (not generic placeholders) build confidence
+
+**Next:**
+- Bruno reviews docs for accuracy and tone
+- Review ClockTray CLI implementation to verify outputs match documentation
+- Consider adding examples for advanced automation (Task Scheduler, CI/CD integration)

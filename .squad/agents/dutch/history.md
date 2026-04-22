@@ -78,3 +78,21 @@
 6. 🎯 Sprint 2: Mac + Dillon begin C++ core implementation
 7. 🎯 Sprint 3: Blain implements XAML settings panel (based on production-ready design)
 8. 🎯 Week 5: Dutch prepares PR submission to PowerToys/main
+
+## Session: 2026-07-14 (CLI Architecture Plan)
+**Work:** Authored CLI architecture plan for adding headless CLI commands to ClockTray  
+**Requested by:** Bruno Capuano  
+**Outcome:** ✅ `.squad/decisions/inbox/dutch-cli-architecture.md` complete  
+**Key Decisions:**
+- **CLI library:** Native `args[]` parsing — zero new dependencies, trivial 4-verb surface
+- **Architecture:** Single binary dual-mode. `args.Length > 0` → CLI; no args → GUI tray (backward compatible)
+- **Command surface:** `show`, `hide`, `toggle`, `status`, `--help`, `--version`
+- **Exit codes:** 0=success, 1=error, 2=unknown command
+- **File impact:** Program.cs modified, new CliHandler.cs. ClockToggler.cs unchanged.
+- **Assignees:** Anna implements, Mac reviews, Dutch final review
+
+## Learnings
+- **ClockToggler is already headless-ready.** All static methods have zero WinForms dependency — perfect for CLI reuse.
+- **OutputType Exe enables dual-mode.** Console.WriteLine works from terminal; in GUI mode output is silently discarded.
+- **Main() return type `int` is backward-compatible** with `void` — .NET runtime accepts both.
+- **Zero-dep property is a feature.** System.CommandLine not worth it for 4 verbs — preserves fast startup and small footprint.

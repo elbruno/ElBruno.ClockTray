@@ -21,6 +21,7 @@ A lightweight Windows system tray application that lets you show or hide the tas
 - **Lunar Date Display**: Traditional Chinese month and day names
 - **24 Solar Terms (节气)**: Shows current or upcoming solar term
 - **CJK Font Support**: Auto-detects best available Chinese font
+- **CLI Commands**: Use `clocktray show`, `clocktray hide`, and `clocktray status` to control the clock from scripts and automation
 
 ## Installation
 
@@ -31,6 +32,37 @@ dotnet tool install --global ElBruno.ClockTray
 ```
 
 After installation, run `clocktray` from any command prompt to launch the system tray app.
+
+## CLI Commands
+
+ClockTray includes command-line commands for automation and scripting:
+
+```bash
+clocktray show        # Show the taskbar clock
+clocktray hide        # Hide the taskbar clock
+clocktray status      # Check current visibility state
+clocktray --help      # Display help and command list
+```
+
+These commands are useful for presentations, streaming, scripts, and automation. For detailed examples, options, and troubleshooting, see the [**CLI Reference Guide**](docs/cli-reference.md).
+
+**Examples:**
+
+```bash
+# Check if clock is visible
+clocktray status
+
+# Hide clock before a presentation
+clocktray hide
+
+# Show clock when done
+clocktray show
+
+# Use in a script
+if clocktray status | findstr "Visible" > nul (
+    echo Clock is visible
+)
+```
 
 ### Build from source
 

@@ -15,5 +15,6 @@
 | Blain | UI Dev | WPF/WinUI 3, context menus, tray icon UX, settings panels | ⚛️ |
 | Dillon | Tester | Tests, edge cases, OS version compat, E2E validation | 🧪 |
 | Molly | Technical Writer | User docs, dev guides, contribution narratives | 📝 |
+| Anna | CLI Specialist | CLI design, argument parsing, headless execution, .NET tool conventions | 💻 |
 | Scribe | Scribe | Memory, decisions, session logs | 📋 |
 | Ralph | Work Monitor | Work queue, backlog, keep-alive | 🔄 |
